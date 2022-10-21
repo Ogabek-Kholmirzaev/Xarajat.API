@@ -46,10 +46,7 @@ namespace Xarajat.API.Controllers
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+            if (user == null) return NotFound();
 
             return Ok(user);
         }
@@ -59,10 +56,7 @@ namespace Xarajat.API.Controllers
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+            if (user == null) return NotFound();
 
             user.Name = updateUserModel.Name;
             user.Email = updateUserModel.Email;
@@ -78,10 +72,7 @@ namespace Xarajat.API.Controllers
         {
             var user = _context.Users.FirstOrDefault(u=>u.Id == id);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+            if (user == null) return NotFound();
 
             _context.Users.Remove(user);
             _context.SaveChanges();
