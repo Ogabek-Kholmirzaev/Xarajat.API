@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using SQLitePCL;
+﻿using Microsoft.AspNetCore.Mvc;
 using Xarajat.API.Data;
 using Xarajat.API.Entities;
 using Xarajat.API.Models;
@@ -70,7 +68,7 @@ namespace Xarajat.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            var user = _context.Users.FirstOrDefault(u=>u.Id == id);
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
 
             if (user == null) return NotFound();
 
