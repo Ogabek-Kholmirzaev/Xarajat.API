@@ -21,7 +21,7 @@ namespace Xarajat.API.Controllers
         [HttpGet]
         public IActionResult GetRooms()
         {
-            var rooms = _context.Rooms.Select(ConvertToGetRoomModel).ToList();
+            var rooms = _context.Rooms.ToList().Select(ConvertToGetRoomModel).ToList();
 
             if (rooms == null)
                 return NotFound();
@@ -37,7 +37,7 @@ namespace Xarajat.API.Controllers
                 Name = createRoomModel.Name,
                 Status = RoomStatus.Created,
                 Key = RandomGenerator.GetRandomString(),
-                AdminId = 2 // login user idsi
+                AdminId = 1, // login user idsi
             };
 
             _context.Rooms.Add(room);
@@ -99,8 +99,11 @@ namespace Xarajat.API.Controllers
             };
         }
 
-        private GetUser ConvertToGetUser(User user)
+        private GetUser? ConvertToGetUser(User? user)
         {
+            if (user == null)
+                return null;
+
             return new GetUser
             {
                 Id = user.Id,
